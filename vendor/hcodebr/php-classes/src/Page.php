@@ -23,7 +23,7 @@ class Page{
          );
     Tpl::configure( $config );
     
-    $this->$tpl = new Tpl;
+    $this->tpl = new Tpl;
 
     $this->setData($this->options["data"]);
 
@@ -40,7 +40,7 @@ class Page{
 
     }
 
-    public function setTpl($name, $dados = array(), $returnHTML = false)
+    public function setTpl($name, $data = array(), $returnHTML = false)
     {
 
         $this->setData($data);
