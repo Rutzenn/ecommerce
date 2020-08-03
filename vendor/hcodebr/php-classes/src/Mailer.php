@@ -1,13 +1,13 @@
-<?php
+<?php 
 
 namespace Hcode;
 
 use Rain\Tpl;
 
 class Mailer {
-
-	const USERNAME = "rutzen.secundaria@gmail.com";
-	const PASSWORD = "Felax007";
+	
+	const USERNAME = "cursophp7hcode@gmail.com";
+	const PASSWORD = "<?password?>";
 	const NAME_FROM = "Hcode Store";
 
 	private $mail;
@@ -16,20 +16,20 @@ class Mailer {
 	{
 
 		$config = array(
-            "tpl_dir"=> $_SERVER["DOCUMENT_ROOT"]."/views/email/",
-            "cache_dir"=> $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
-            "debug"=> false 
-        );
+			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/email/",
+			"cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
+			"debug"         => false
+	    );
 
-	    Tpl::configure( $config );
-	    
-	    $tpl = new Tpl;
+		Tpl::configure( $config );
 
-	    foreach ($data as $key => $value) {
-	    	$tpl->assign($key, $value);
-	    }
+		$tpl = new Tpl;
 
-	    $html = $tpl->draw($tplName, true);
+		foreach ($data as $key => $value) {
+			$tpl->assign($key, $value);
+		}
+
+		$html = $tpl->draw($tplName, true);
 
 		$this->mail = new \PHPMailer;
 
@@ -37,10 +37,13 @@ class Mailer {
 		$this->mail->isSMTP();
 
 		//Enable SMTP debugging
-		// SMTP::DEBUG_OFF = off (for production use)
-		// SMTP::DEBUG_CLIENT = client messages
-		// SMTP::DEBUG_SERVER = client and server messages
+		// 0 = off (for production use)
+		// 1 = client messages
+		// 2 = client and server messages
 		$this->mail->SMTPDebug = 0;
+
+		//Ask for HTML-friendly debug output
+		$this->mail->Debugoutput = 'html';
 
 		//Set the hostname of the mail server
 		$this->mail->Host = 'smtp.gmail.com';
@@ -51,8 +54,8 @@ class Mailer {
 		//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 		$this->mail->Port = 587;
 
-		//Set the encryption mechanism to use - STARTTLS or SMTPS
-		$this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		//Set the encryption system to use - ssl (deprecated) or tls
+		$this->mail->SMTPSecure = 'tls';
 
 		//Whether to use SMTP authentication
 		$this->mail->SMTPAuth = true;
@@ -70,7 +73,7 @@ class Mailer {
 		//$this->mail->addReplyTo('replyto@example.com', 'First Last');
 
 		//Set who the message is to be sent to
-		$this->mail->addAddress($toAdress, $toName);
+		$this->mail->addAddress($toAddress, $toName);
 
 		//Set the subject line
 		$this->mail->Subject = $subject;
@@ -83,9 +86,7 @@ class Mailer {
 		$this->mail->AltBody = 'This is a plain-text message body';
 
 		//Attach an image file
-		//$this->mail->addAttachment('images/phpmailer_mini.png');
-
-		
+		//$mail->addAttachment('images/phpmailer_mini.png');
 
 	}
 
@@ -98,4 +99,4 @@ class Mailer {
 
 }
 
-?>
+ ?>
