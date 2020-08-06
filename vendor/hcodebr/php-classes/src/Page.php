@@ -36,7 +36,6 @@ class Page{
     private function setData($data = array())
     {
 
-        
     foreach($data as $key => $value){
         $this->tpl->assign($key, $value);
     }
@@ -55,7 +54,7 @@ class Page{
     public function __destruct()
     {
 
-        if ($this->options["footer"] === true) $this->tpl->draw("footer");
+        if ($this->options["footer"] === true)$this->tpl->draw("footer");
 
     }
 

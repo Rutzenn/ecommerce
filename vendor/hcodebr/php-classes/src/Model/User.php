@@ -179,9 +179,7 @@ class User extends Model {
 
                 $dataRecovery = $results2[0];
 
-                
                 $code = base64_encode(openssl_encrypt($dataRecovery['idrecovery'], 'AES-128-CBC', pack("a16", User::SECRET), 0, pack("a16", User::SECRET_IV)));
-                
                 
                 #openssl_encrypt(data, method, password)
                 #$code = base64_encode(mcrypt_decrypt(MCRYPT_RIJNDAEL_128, User::SECRET, $dataRecovery["idrecovery"], MCRYPT_MODE_ECB));
