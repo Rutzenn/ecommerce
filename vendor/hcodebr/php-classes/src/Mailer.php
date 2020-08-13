@@ -9,8 +9,8 @@ use Rain\Tpl;
 
 class Mailer {
 	
-	const USERNAME = "rutzentestehcode@gmail.com";
-	const PASSWORD = "????";
+	const USERNAME = "email aqui";
+	const PASSWORD = "email aqui";
 	const NAME_FROM = "Hcode Store";
 
 	private $mail;
@@ -36,6 +36,13 @@ class Mailer {
 
 		$this->mail = new PHPMailer(true);
 		$this->mail->isSMTP();
+		$this->mail->SMTPOptions = array(
+			'ssl' => array(
+			    'verify_peer' => false,
+			    'verify_peer_name' => false,
+			    'allow_self_signed' => true
+			 )
+			); 
 		$this->mail->SMTPDebug = SMTP::DEBUG_OFF;
 		$this->mail->Host = 'smtp.gmail.com';
 		$this->mail->Port = 587;
