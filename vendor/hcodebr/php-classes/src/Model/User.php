@@ -204,15 +204,15 @@ class User extends Model {
     public static function validForgotDecrypt($code)
     {
 
-        $code = base64_decode($code);
+        #$code = base64_decode($code);
 
-        $idrecovery = openssl_decrypt($code, 'AES-128-CBC', pack("a16", User::SECRET), 0, pack("a16", User::SECRET_IV));
+        $idrecovery = openssl_decrypt(base64_decode($code), 'AES-128-CBC', pack("a16", User::SECRET), 0, pack("a16", User::SECRET_IV));
 
         $sql = new Sql();
 
         $results = $sql->select("
-            SELECT 
-            * FROM tb_userspasswordsrecoveries a
+            SELECT *
+            FROM tb_userspasswordsrecoveries a
             INNER JOIN tb_users b USING(iduser)
             INNER JOIN tb_persons c USING(idperson)
             WHERE
@@ -221,7 +221,6 @@ class User extends Model {
                 a.dtrecovery IS NULL
                 AND
                 DATE_ADD(a.dtregister, INTERVAL 1 HOUR) >= NOW();
-
             ", array(
                 ":idrecovery"=>$idrecovery
             ));

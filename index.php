@@ -186,6 +186,9 @@ $app->get("/admin/forgot/sent", function(){
 
 });
 
+
+
+
 $app->get("/admin/forgot/reset", function(){
 
 	$user = User::validForgotDecrypt($_GET["code"]);
@@ -202,7 +205,7 @@ $app->get("/admin/forgot/reset", function(){
 
 });
 
-$app->post("admin/forgot/reset", function(){
+$app->post("/admin/forgot/reset", function(){
 
 	$forgot = User::validForgotDecrypt($_POST["code"]);
 
@@ -212,14 +215,15 @@ $app->post("admin/forgot/reset", function(){
 
 	$user->get((int)$forgot["iduser"]);
 
-	$users->setPassword($_POST["password"]);
+	$user->setPassword($_POST["password"]);
 
 	$page = new PageAdmin([
 		"header"=>false,
 		"footer"=>false
 	]);
 
-	$page->setTpl("forgot-reset-sucess");
+	$page->setTpl("forgot-reset-success");
+
 
 });
 
