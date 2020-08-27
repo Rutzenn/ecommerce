@@ -124,14 +124,15 @@ class Category extends Model {
             LIMIT $start, $itemsPerPage;
         ", [
             ':idcategory'=>$this->getidcategory()
-        ]) 
-        $resultTotal = $sql->select(" SELECT FOUND_ROWS() AS nrtotal;");
+        ]);
+
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
         return [
             'data'=>Product::checkList($results),
             'total'=>(int)$resultTotal[0]["nrtotal"],
             'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
-        ]
+        ];
 
     }
 
@@ -152,7 +153,7 @@ class Category extends Model {
 
         $sql = new Sql();
 
-        $sql->query("DELETE FROM tb_productscategories WHERE idcategory = :idcategory AND idproduct = :idproduct)", [
+        $sql->query("DELETE FROM tb_productscategories WHERE idcategory = :idcategory AND idproduct = :idproduct", [
             ':idcategory'=>$this->getidcategory(),
             ':idproduct'=>$product->getidproduct()
         ]);
