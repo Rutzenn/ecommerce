@@ -3,21 +3,22 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>{$category.descategory}</h2>
+                   <h2>{$category.descategory}</h2>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="single-product-area">
+ <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
+            {loop="$products"}
             <div class="col-md-3 col-sm-6">
                 <div class="single-shop-product">
-                    <div class="product-upper">
-                        <img src="{$value.desphoto}" alt="">
+                   <div class="product-upper">
+                        <img src="{$value.desurl}" alt="">
                     </div>
                     <h2><a href="/products/{$value.desurl}">{$value.desproduct}</a></h2>
                     <div class="product-carousel-price">
@@ -29,7 +30,7 @@
                     </div>                       
                 </div>
             </div>
-            {loop="$products"}
+            
             <div class="col-md-3 col-sm-6">
                 <div class="single-shop-product">
                     <div class="product-upper">
