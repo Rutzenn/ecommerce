@@ -24,7 +24,7 @@ class ComposerStaticInit5eee38b1e27d44d08f339883dfb55e41
         ),
         'Hcode\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/..' . '/hcodebr/php-classes/src',
         ),
     );
 
