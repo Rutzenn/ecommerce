@@ -21,9 +21,8 @@
 
                         <form action="/checkout">
                             
-                            {if="$error= ''"}
+                            {if="$error != ''"}
                             <div class="alert alert-danger" role="alert">
-                            Error!
                             {$error}
                             </div>
                             {/if}
@@ -51,7 +50,7 @@
                                         </td>
 
                                         <td class="product-name">
-                                            <a href="/products/{$value.desurl}">{$value.desproduct}</a> 
+                                            <a href="/product/{$value.desurl}">{$value.desproduct}</a> 
                                         </td>
 
                                         <td class="product-price">
@@ -83,7 +82,7 @@
                                     <div class="coupon">
                                         <label for="cep">CEP:</label>
                                         <input type="text" placeholder="00000-000" value="{$cart.deszipcode}" id="cep" class="input-text" name="zipcode">
-                                        <input type="submit" formmethod="post" formaction="/cart/freight" value="CALCULAR" class="button">
+                                        <input type="submit" formmethod="post" formaction="/cart/freight" value="CÁLCULAR" class="button">
                                     </div>
 
                                 </div>
