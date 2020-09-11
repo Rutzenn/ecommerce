@@ -170,6 +170,8 @@ class Product extends Model {
         ]);
 
     }
+
+    
 }
 
 ?>
