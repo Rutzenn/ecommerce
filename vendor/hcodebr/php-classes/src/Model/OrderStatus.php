@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace Hcode\Model;
 
@@ -21,6 +21,6 @@ class OrderStatus extends Model {
 
 	}
 
-}	
+}
 
 ?>
